@@ -1,88 +1,82 @@
-*{  
+* {  
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-body{    
-    margin: 0;
-    padding: 0;
+body {
     background-color: bisque;    
 }
 
-.container{
-    /* max-width: 1440px; */
-    max-width: 90vw;
-    margin: 5vh auto;
-    /* padding: 0; */
-    background-color: rgb(247,247,247);
-    overflow: hidden;
-}
-
-.images-and-pagination{
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    margin-left: auto;
-    margin-right: auto;
-    height: 601px;
-    max-width: 1400px;
-
-    background-color: rgb(221, 226, 218);
-}
-
-.viewport {
-    width: 1414px;
-    /* height: 560px; */
-    min-height: 1414px;
-    overflow: hidden;
-}
-
-.images{
+.container {
+    height: 80vh;
+    width: 80vw;
+    margin: 10vh auto;
+    background-color: gray;
+    /* overflow: hidden; */
     position: relative;
-    left: 0;
-    transition: .5s;
-
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    /* padding-right: 20px;
-    padding-left: 20px;   */
-    margin: 0 auto;
-
-    max-width: 1414px;
-    height: 1414px;
-    gap: 25px;
 }
 
-.images > img{
+.slider {
+	background-color: #ddd;
+	height: inherit;
+	overflow: hidden;
+	position: relative;
+	width: inherit;
+	box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+}
+
+.slides {
+	height: inherit;
+	opacity: 0;
+	position: absolute;
+	width: inherit;
+	z-index: 0;
+	transform: scale(1.5);
+	transition: transform ease-in-out .5s, opacity ease-in-out .5s;
+}
+
+.container .controls {
+	left: 50%;
+	margin-left: -98px;
+	position: absolute;
+}
+
+.slides > img{
     margin: 0;
     padding: 0;
-    width: 1414px;
-    height: 1414px;
+    width: 60%;
+    height: 100%;
     transition-property: all;
     transition-duration: 1s;
 }
-
 
 .description-and-pagination{
     display: flex;
 }
 
+.slogans{
+    display: none;
+    /* opacity: 0; */
+    /* visibility: hidden; */    
+}
+
 /* -------------------------------------- */
 
 /* инпуты делаем невидимыми */
-.images-and-pagination > input {
+.container > input {
 	display: none;
 }
 
 /* блок с шариками */
-.pagination .controls {
+.pagination > .controls {
     width: 120px;
     height: 26px;
     margin: 35px auto 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 /* label, привязанный к input */
@@ -91,7 +85,7 @@ body{
     justify-content: center;
     align-items: center;      
     
-    width:26px;
+    width: 26px;
     height: 26px;
     border-radius: 50%;
     cursor: pointer;       
@@ -108,25 +102,37 @@ body{
 }
 
 /* переключение шариков */
-#slide1:checked ~ .controls .button-wrapper .button1,
-#slide2:checked ~ .controls .button-wrapper .button2,
-#slide3:checked ~ .controls .button-wrapper .button3,
-#slide4:checked ~ .controls .button-wrapper .button4,
-#slide5:checked ~ .controls .button-wrapper .button5
+#slide1:checked ~ .description-and-pagination .pagination .controls .button-wrapper .button1,
+#slide2:checked ~ .description-and-pagination .pagination .controls .button-wrapper .button2,
+#slide3:checked ~ .description-and-pagination .pagination .controls .button-wrapper .button3,
+#slide4:checked ~ .description-and-pagination .pagination .controls .button-wrapper .button4,
+#slide5:checked ~ .description-and-pagination .pagination .controls .button-wrapper .button5
  {
-    cursor: auto;
+    cursor: default;
     background-color: #BB945F;
     transition: background ease-in-out .2s;
 }
 
-/* переключение шариков */
-#slide1:checked ~ .viewport .images .image-1,
-#slide2:checked ~ .viewport .images .image-2,
-#slide3:checked ~ .viewport .images .image-3,
-#slide4:checked ~ .viewport .images .image-4,
-#slide5:checked ~ .viewport .images .image-5
+/* переключение слайдов */
+#slide1:checked ~ .slider > .slide1,
+#slide2:checked ~ .slider > .slide2,
+#slide3:checked ~ .slider > .slide3,
+#slide4:checked ~ .slider > .slide4,
+#slide5:checked ~ .slider > .slide5
  {
-    cursor: auto;
-    background-color: #BB945F;
-    transition: background ease-in-out .2s;
+    opacity: 1;
+	z-index: 1;
+	transform: scale(1);
+}
+
+/* переключение подписей к слайдам */
+#slide1:checked ~ .description-and-pagination .description  .slogan-1,
+#slide2:checked ~ .description-and-pagination .description  .slogan-2,
+#slide3:checked ~ .description-and-pagination .description  .slogan-3,
+#slide4:checked ~ .description-and-pagination .description  .slogan-4,
+#slide5:checked ~ .description-and-pagination .description  .slogan-5
+ {
+    display: initial;
+    /* opacity: 1; */
+    /* visibility: visible; */
 }
