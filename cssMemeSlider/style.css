@@ -11,7 +11,7 @@ body {
 .container {
     height: 80vh;
     /* width: 80vw; */
-    width: 1414px;
+    width: 707px;   /* !!!!!!!!! */
     /* height: 1414px; */
     margin: 10vh auto;
     background-color: gray;
@@ -49,7 +49,7 @@ body {
 .slides > img{
     margin: 0;
     padding: 0;
-    width: 60%;
+    width: 100%;
     height: 100%;
     transition-property: all;
     transition-duration: 1s;
@@ -57,21 +57,21 @@ body {
 
 }
 
-.description-and-pagination{
+.description-and-controls{
     display: flex;
-    align-items:start;
+    justify-content: space-between;
 }
 
 .slogans{
     display: none;
     /* opacity: 0; */
     /* visibility: hidden; */
-    font-size: 3em;
+    font-size: 2.5em;
     color: brown;
     font-family: Forum;
     font-style: normal;
     font-weight: 700;
-    letter-spacing: 2px;  
+    letter-spacing: 1.5px;  
 }
 
 /* -------------------------------------- */
@@ -82,8 +82,9 @@ body {
 }
 
 /* блок с шариками */
-.pagination > .controls {
-    width: 120px;
+.controls{
+    width: 650px;
+    /* width: 120px; */
     height: 26px;
     margin: 35px auto 0;
     display: flex;
@@ -119,11 +120,11 @@ body {
 }
 
 /* переключение шариков */
-#slide1:checked ~ .description-and-pagination .pagination .controls .button-wrapper .button1,
-#slide2:checked ~ .description-and-pagination .pagination .controls .button-wrapper .button2,
-#slide3:checked ~ .description-and-pagination .pagination .controls .button-wrapper .button3,
-#slide4:checked ~ .description-and-pagination .pagination .controls .button-wrapper .button4,
-#slide5:checked ~ .description-and-pagination .pagination .controls .button-wrapper .button5
+#slide1:checked ~ .description-and-controls  .controls .button-wrapper .button1,
+#slide2:checked ~ .description-and-controls  .controls .button-wrapper .button2,
+#slide3:checked ~ .description-and-controls  .controls .button-wrapper .button3,
+#slide4:checked ~ .description-and-controls  .controls .button-wrapper .button4,
+#slide5:checked ~ .description-and-controls  .controls .button-wrapper .button5
  {
     cursor: default;
     background-color: #BB945F;
@@ -143,11 +144,11 @@ body {
 }
 
 /* переключение подписей к слайдам */
-#slide1:checked ~ .description-and-pagination .description  .slogan-1,
-#slide2:checked ~ .description-and-pagination .description  .slogan-2,
-#slide3:checked ~ .description-and-pagination .description  .slogan-3,
-#slide4:checked ~ .description-and-pagination .description  .slogan-4,
-#slide5:checked ~ .description-and-pagination .description  .slogan-5
+#slide1:checked ~ .description-and-controls .description  .slogan-1,
+#slide2:checked ~ .description-and-controls .description  .slogan-2,
+#slide3:checked ~ .description-and-controls .description  .slogan-3,
+#slide4:checked ~ .description-and-controls .description  .slogan-4,
+#slide5:checked ~ .description-and-controls .description  .slogan-5
  {
     display: initial;
     /* opacity: 1; */
