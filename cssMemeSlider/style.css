@@ -60,6 +60,7 @@ body {
 .description-and-controls{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .slogans{
@@ -86,7 +87,8 @@ body {
     width: 650px;
     /* width: 120px; */
     height: 26px;
-    margin: 35px auto 0;
+    /* margin: 35px auto 0; */
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
