@@ -1,3 +1,5 @@
+/*#region common -------------------------------*/
+
 * {  
     margin: 0;
     padding: 0;
@@ -20,62 +22,63 @@ body {
     border-radius: 1em;
 }
 
+/*#endregion*/
+
+
+
+/*#region picture slider -----------------------*/
 .slider {
     width: 100%;
 	height: 100%;
-
-	overflow: hidden;
-	position: relative;
     border-radius: 1em;
+
+	/* overflow: hidden; */
+    /* display: flex; */
 }
 
 .slides {
-	opacity: 0;
-	position: absolute;
-	transform: scale(1.5);
-	transition: transform ease-in-out .5s, opacity ease-in-out .5s;
-/* 
-    width: 100%;
-    height: 100%; */
+    /* min-width: 100%; */
 }
 
-.slides > img{
-    margin: 0;
-    padding: 0;
+@keyframes change-slide {
+    0% {
+      display: block;
+      opacity: 0;
+      visibility: hidden;
+    }
+    100% {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+}
+
+.slides > img {
     width: 100%;
     height: 100%;
-    transition-property: all;
-    transition-duration: 1s;
     border-radius: 1em;
-
 }
 
-.description-and-controls{
+/*#endregion*/
+
+
+
+/*#region text slider --------------------------*/
+
+.description-and-controls {
     width: 100%;
     height: 10vh;
     display: flex;
-    justify-content: space-between;
-    /* align-items: center; */
-    position: relative;
 }
 
-.description{
+.description {
     height: inherit;
-    /* flex-grow: 3; */
-    /* flex-basis: 300px; */
-    min-width: 80%;
-    position: relative;        
-
-    transition: transform 0.5s ease;
+    min-width: 75%;
+    display: flex;
+    align-items: center;
 }
 
-.slogans{
-    position: absolute;
-    top: 1.5vh;
-    left: 0;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-
+.slogans {
     font-size: 2.5em;
     color: brown;
     font-family: Forum;
@@ -84,7 +87,11 @@ body {
     letter-spacing: calc(1em / 30);
 }
 
-/* -------------------------------------- */
+/*#endregion*/
+
+
+
+/*#region блок управления слайдером ------------*/
 
 /* инпуты делаем невидимыми */
 .container > input {
@@ -92,42 +99,37 @@ body {
 }
 
 /* блок с шариками */
-.controls{
-    /* flex-grow: 1; */
-
-    /* width: calc(1.4em * 5);
-    height: 1.4em; */
-    margin: 0 auto;
+.controls {
+    width: inherit;
+    height: inherit;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 /* label, привязанный к input */
-.button-wrapper{
-    display: block;
-    /* display: flex;
+.button-wrapper {
+    display: flex;
     justify-content: center;
-    align-items: center;       */
-    width: 1.4em;
-    height: 1.4em;
+    align-items: center;      
+    width: 1.8em;
+    height: 1.8em;
     border-radius: 50%;
-    cursor: pointer;     
+    cursor: pointer;
 }
 
 /* сами шарики внутри label */
-.button-wrapper > div{
-    width: .8em;
-    height: .8em;
+.button-wrapper > div {
+    width:  1em;
+    height: 1em;
     border-radius: 50%;
     background-color: #0C0C0E;
+    transition: background-color .5s ease-in-out;
 }
 
-.button-wrapper > div:hover{
+.button-wrapper > div:hover {
     background-color:gray;
 }
-
-/* -------------------------------------- */
 
 /* переключение шариков */
 #slide1:checked ~ .description-and-controls  .controls .button-wrapper .button1,
@@ -138,28 +140,113 @@ body {
  {
     cursor: default;
     background-color: #BB945F;
-    transition: background ease-in-out .2s;
+    transition: background-color .3s ease-in-out;
 }
 
-/* переключение слайдов */
+/*#endregion*/
+
+
+
+/*#region переключение слайдов -----------------*/
+
 #slide1:checked ~ .slider > .slide1,
 #slide2:checked ~ .slider > .slide2,
 #slide3:checked ~ .slider > .slide3,
 #slide4:checked ~ .slider > .slide4,
-#slide5:checked ~ .slider > .slide5
- {
-    opacity: 1;
-	z-index: 1;
-	transform: scale(1);
+#slide5:checked ~ .slider > .slide5 {
+    animation-name: change-slide;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-delay: 0s;
 }
 
-/* переключение подписей к слайдам */
+#slide1:not(:checked) ~ .slider > .slide1,
+#slide2:not(:checked) ~ .slider > .slide2,
+#slide3:not(:checked) ~ .slider > .slide3,
+#slide4:not(:checked) ~ .slider > .slide4,
+#slide5:not(:checked) ~ .slider > .slide5 {
+    display: none;
+}
+
 #slide1:checked ~ .description-and-controls .description  .slogan-1,
 #slide2:checked ~ .description-and-controls .description  .slogan-2,
 #slide3:checked ~ .description-and-controls .description  .slogan-3,
 #slide4:checked ~ .description-and-controls .description  .slogan-4,
-#slide5:checked ~ .description-and-controls .description  .slogan-5
- {
-    /* display: initial; */
-    opacity: 1;
+#slide5:checked ~ .description-and-controls .description  .slogan-5 {
+    /* opacity: 1; */
+    animation-name: change-slide;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-delay: 0s;
 }
+
+#slide1:not(:checked) ~ .description-and-controls .description  .slogan-1,
+#slide2:not(:checked) ~ .description-and-controls .description  .slogan-2,
+#slide3:not(:checked) ~ .description-and-controls .description  .slogan-3,
+#slide4:not(:checked) ~ .description-and-controls .description  .slogan-4,
+#slide5:not(:checked) ~ .description-and-controls .description  .slogan-5 {
+    display: none;
+}
+
+/*#endregion*/
+
+
+
+/*#region (@media queries) ---------------------*/
+
+@media (max-width: 768px) {
+
+    .container {
+        height: 70vh;
+        width: 70vh;
+    }
+
+    .description-and-controls {
+        flex-direction: column-reverse;
+    }
+
+    .description {
+        /* justify-content: center; */
+    }
+
+}
+
+@media (max-width: 640px) {
+    .container {
+        height: 60vh;
+        width: 60vh;
+    }   
+}
+
+@media (max-width: 540px) {
+    .container {
+        height: 50vh;
+        width: 50vh;
+    }   
+}
+
+@media (max-width: 450px) {
+    .container {
+        height: 35vh;
+        width: 35vh;
+    }   
+}
+
+@media (max-width: 320px) {
+    .container {
+        height: 25vh;
+        width: 25vh;
+    } 
+    
+    .slogans {
+        font-size: 1.5em;
+    }
+}
+
+/*#endregion*/
